@@ -1,0 +1,26 @@
+<h1>{{ accountName }}</h1>
+<div class="budget" (scroll)="onScroll($event)">
+  <div class="empty-space-384"></div>
+  <div class="current-balance-container">
+    -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    Current balance is {{ currBalance | currency }}
+  </div>
+  <div class="empty-space-384"></div>
+  <div class="budget-item balance">
+    <span class="date">{{ startingDate }}:</span> Starting balance {{ startingBalance | currency }}
+  </div>
+  <ng-container *ngFor="let item of data; index as i; first as firstItem">
+    <ng-container *ngIf="firstItem">
+      <div *ngFor="let whatever of [].constructor(calcNumDotsBetweenDates(startingDate, data[i].date))">.</div>
+    </ng-container>
+    <ng-container *ngIf="!firstItem">
+      <div *ngFor="let whatever of [].constructor(calcNumDotsBetweenDates(data[i - 1].date, data[i].date))">.</div>
+    </ng-container>
+    <div class="budget-item" [ngClass]="{ income: item.amount >= 0, expense: item.amount < 0 }">
+      <span class="date">{{ item.date }}:</span> {{ item.text }} {{ item.amount | currency }}
+    </div>
+  </ng-container>
+  <div class="empty-space-384"></div>
+  <div class="empty-space-384"></div>
+</div>
+<div class="empty-space-512"></div>

@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  width: 80%;
+  min-width: 256px;
+  max-width: 1280px;
+  margin: 0 auto;
+  background-color: var(--primary-background-color);
+  padding: 60px 40px 80px;
+}
+.clear-padding {
+  padding: 0;
+}
